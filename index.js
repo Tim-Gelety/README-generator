@@ -10,30 +10,20 @@ const questions =
         name: 'project',
         message: 'What is the project title?'
       },
-      {
-        type: 'input',
-        name: 'description',
-        message: 'Describe this project'
-      },
-      {
-        type: 'input',
-        name: 'usage',
-        message: 'What is the intended use of this application?'
-      },
+      
 ]
 
 
+const userArr = []
 // TODO: Create a function to write README file
-function writeToFile(fileName, answers) {
-  fs.writeFile('README.md', answers, function(err){
+function writeToFile(userArr) {
+  fs.writeFile('README.md', userArr, function(err){
     // ERROR CONTROl
     if (err) {
       return console.log(err);
     }
     // pass the answers into the readme somehow
-    console.log(
-      answers
-      )
+   
     console.log("Done!");
   })
   
@@ -43,7 +33,8 @@ function writeToFile(fileName, answers) {
 function init() {
   
   inquirer.prompt(questions).then((answers) => {
-    console.log(JSON.stringify(answers, null, '  '));
+    // template literal goes here
+    return `#${answers.project}`
   }).then(writeToFile);
 
 }
